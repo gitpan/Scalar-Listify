@@ -18,3 +18,10 @@ print "ok 1\n";
 # (correspondingly "not ok 13") depending on the success of chunk 13
 # of the test code):
 
+my $scalar = 'ho there';
+my $aref   = [qw(a ref array ref got to go)];
+
+use Data::Dumper;
+
+warn Dumper(listify_aref($scalar));
+warn Dumper(listify_aref($aref));

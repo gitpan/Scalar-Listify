@@ -16,26 +16,27 @@ our @ISA = qw(Exporter);
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 
-our %EXPORT_TAGS = ( 'ALL' => [ qw(&listify
-	
-) ] );
+our @EXPORT;
+@EXPORT = qw(&listify &listify_aref);
 
-Exporter::export_ok_tags('ALL');
-
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 # Preloaded methods go here.
 
+my $sub = 'Scalar::Listify::listify';
+
 sub listify {
-  my $sub = 'Scalar::Listify::listify';
 
   scalar @_ == 1 or die "$sub only takes one argument and this argument
 must be a simple scalar or array reference";
 
   my $scalar = shift;
 
-  !ref($scalar) and return ($scalar);
+  if (not ref($scalar)) {
+    my @ret = ($scalar);
+    return (@ret);
+  }
 
   ref($scalar) eq 'ARRAY' and return @$scalar;
 
@@ -48,12 +49,18 @@ here is what Data::Dumper has to say about it:";
 
 }
 
+sub listify_aref {
+
+  [ listify @_ ]
+
+}
+
 1;
 __END__
 
 =head1 NAME
 
-Scalar::Listify - produces an array from a scalar value or array ref.
+Scalar::Listify - produces an array(ref)? from a scalar value or array ref.
 
 =head1 SYNOPSIS
 
@@ -84,6 +91,7 @@ And this module is designed to address just that!
 listify() - listify takes a scalar as an argument and returns the
 value of the scalar in a format useable in list contexts.
 
+listify_aref() - returns [ listify (@_) ]
 
 =head1 AUTHOR
 
