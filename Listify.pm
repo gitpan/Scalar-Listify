@@ -19,7 +19,7 @@ our @ISA = qw(Exporter);
 our @EXPORT;
 @EXPORT = qw(&listify &listify_aref);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 # Preloaded methods go here.
@@ -41,7 +41,7 @@ must be a simple scalar or array reference";
   ref($scalar) eq 'ARRAY' and return @$scalar;
 
   require Data::Dumper;
-  my $err = "Scalar::Listify::listify error - this function only takes 
+  my $err = "Scalar::Listify::listify error - this function only takes
 simple scalars or references to arrays. I'm not sure what you gave me, but
 here is what Data::Dumper has to say about it:";
   warn $err;
@@ -84,7 +84,7 @@ before getting on with one's task. Ie:
 
   print ref($text_scalar) ? (join ':', @$text_scalar) : $text_scalar;
 
-And this module is designed to address just that! 
+And this module is designed to address just that!
 
 =head2 EXPORT
 
@@ -96,6 +96,12 @@ listify_aref() - returns [ listify (@_) ]
 =head1 AUTHOR
 
 T. M. Brannon, <tbone@CPAN.org>
+
+=head1 COPYRIGHT
+
+Copyright 1999-present by Terrence Brannon.
+
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 

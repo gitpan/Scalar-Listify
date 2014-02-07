@@ -4,3 +4,4 @@ MANIFEST
 Makefile.PL
 test.pl
 META.yml                                Module meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
